@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Page</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        background-color: blanchedalmond;
+      }
+
+      .login-form {
+        width: 300px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .login-form input[type="text"],
+      .login-form input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .login-form button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .login-form .error-message {
+        color: red;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .timestamp {
+        margin-top: 10px;
+        font-size: 12px;
+        text-align: right;
+      }
+
+      .top-fields {
+        text-align: right;
+        margin-bottom: 20px;
+      }
+
+      .image-container {
+        display: none;
+        text-align: center;
+      }
+
+      .image-container img {
+        width: 200px;
+        height: 200px;
+      }
+
+      .home-page {
+        display: none;
+      }
+
+      .home-page h1 {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-fields">
+      Name: <input type="text" id="name" placeholder="KARTHIK R" /><br />
+      Reg. No.: <input type="text" id="regNo" placeholder="21BCE1349" /><br />
+    </div>
+
+    <div class="login-form">
+      <h2>Login</h2>
+      <div class="error-message"></div>
+      <input type="text" id="userId" placeholder="User ID" />
+      <input type="password" id="password" placeholder="Password" />
+      <button onclick="login()">Login</button>
+      <div class="timestamp">Current Date: <span id="timestamp"></span></div>
+    </div>
+
+    <div class="home-page">
+      <h1>Welcome, [User Name]!</h1>
+      <img src="photos/kr.jpg" alt="Your Photo" />
+      <p>Karthik R</p>
+    </div>
+
+    <script>
+      // Get current date as timestamp
+      const timestamp = document.getElementById("timestamp");
+      timestamp.textContent = new Date().toLocaleString();
+
+      // Disable name and regno fields to prevent modification
+      document.getElementById("name").disabled = true;
+      document.getElementById("regNo").disabled = true;
+
+      // Replace these with your actual user credentials (for demonstration only)
+      const validUserId = "user123";
+      const validPassword = "password";
+
+      // Login function
+      function login() {
+        const userId = document.getElementById("userId").value;
+        const password = document.getElementById("password").value;
+        const errorMessage = document.querySelector(".error-message");
+
+        // Clear any previous error message
+        errorMessage.textContent = "";
+
+        // Validate credentials (replace with server-side validation for security)
+        if (userId === validUserId && password === validPassword) {
+          const loginForm = document.querySelector(".login-form");
+          loginForm.style.display = "none"; // Hide login form
+
+          // Show the home page with details
+          const homePage = document.querySelector(".home-page");
+          homePage.style.display = "block";
+        } else {
+          errorMessage.textContent = "Invalid username or password";
+        }
+      }
+    </script>
+  </body>
+</html>
